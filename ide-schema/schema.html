@@ -2,15 +2,17 @@
 <head>
 <title>Schema Modeler</title>
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<!-- FontAwesome icon set -->
+<link type="text/css" href="/services/v3/web/resources/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
 <!-- Sets the basepath for the library if not in same directory -->
 <script type="text/javascript">
 		mxBasePath = '../ide-schema/src';
 	</script>
 <!-- Loads and initializes the library -->
 <script type="text/javascript" src="src/js/mxClient.js"></script>
+
+<script src="../ide/ui/message-hub.js"></script>
 
 <!-- Example code -->
 <script type="text/javascript">
@@ -27,18 +29,42 @@
 		        if (xhr.status === 200) {
 		        	return xhr.responseText;
 		        }
-			};
+			}
 			
 			function loadContents(file) {
 				if (file) {
 					return getResource('/services/v3/ide/workspaces' + file);
 				}
 				console.error('file parameter is not present in the URL');
-			};
+			}
 		
 			var searchParams = new URLSearchParams(window.location.search);
 			var file = searchParams.get('file');
 			var contents = loadContents(file);
+			
+			var messageHub = new FramesMessageHub();
+		
+			function saveContents(text) {
+				console.log('Save called...');
+				if (file) {
+					var xhr = new XMLHttpRequest();
+					xhr.open('PUT', '/services/v3/ide/workspaces' + file);
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState === 4) {
+							console.log('file saved: ' + file);
+						}
+					}
+					xhr.send(text);
+					messageHub.post({data: file}, 'editor.file.saved');
+				} else {
+					console.error('file parameter is not present in the request');
+				}
+			}
+			
+			messageHub.subscribe(function(graph) {
+				var schema = createSchema(graph);
+				saveContents(schema);
+			}, 'workbench.editor.save');
 			
 			
 			// Checks if the browser is supported
@@ -306,14 +332,14 @@
 				editor.addAction('save', function(editor, cell) {
 					var schema = createSchema(graph);
 					console.info(schema);
-					showAlert('Save', 'Save...');
+					saveContents(schema);
 				});
 				
 				addToolbarButton(editor, toolbar, 'properties', 'Properties', 'list-ul', true);
 
 				// Defines a new export action
 				editor.addAction('properties', function(editor, cell) {
-					if (cell == null) {
+					if (cell === null) {
 						cell = graph.getSelectionCell();
 					}
 					
