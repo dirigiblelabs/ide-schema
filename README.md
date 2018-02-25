@@ -1,11 +1,11 @@
-# Schema Modeller Plugin for Eclipse Dirigible
+# Schema Modeler Plugin for Eclipse Dirigible
 
 [![Eclipse License](http://img.shields.io/badge/license-Eclipse-brightgreen.svg)](LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/dirigiblelabs/ide-terminal.svg)](https://github.com/dirigiblelabs/ide-terminal/graphs/contributors)
 
 ## Overview
 
-Schema Modeller Plugin for the [Eclipse Dirigible](https://github.com/eclipse/dirigible) WebIDE v3.x and above.
+Schema Modeler Plugin for the [Eclipse Dirigible](https://github.com/eclipse/dirigible) WebIDE v3.x and above.
 
 Build the [Eclipse Dirigible](https://github.com/eclipse/dirigible), deploy on e.g. Tomcat Web Container and go to location:
 
