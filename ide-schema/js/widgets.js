@@ -171,7 +171,7 @@ function configureStylesheet(graph) {
 
 // Function to create the entries in the popupmenu
 function createPopupMenu(editor, graph, menu, cell, evt) {
-	if (cell != null) {
+	if (cell !== null) {
 		if (graph.isHtmlLabel(cell)) {
 			menu.addItem('Properties', 'list-ul', function() {
 				editor.execute('properties', cell);
