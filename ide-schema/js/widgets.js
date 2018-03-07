@@ -1,7 +1,7 @@
 function addToolbarButton(editor, toolbar, action, label, image, isTransparent) {
 	var button = document.createElement('button');
 	// button.style.fontSize = '10';
-	if (image != null) {
+	if (image !== null) {
 		var img = document.createElement('i');
 		img.setAttribute('class', 'fa fa-'+image+' fa-2x');
 		// img.style.width = '16px';
@@ -11,9 +11,11 @@ function addToolbarButton(editor, toolbar, action, label, image, isTransparent) 
 		button.appendChild(img);
 	}
 	if (isTransparent) {
-		button.style.background = 'transparent';
-		button.style.color = '#FFFFFF';
-		button.style.border = 'none';
+		//button.style.background = 'black';
+		//button.style.color = 'white';
+		//button.style.border = 'none';
+		button.setAttribute('class', 'button');
+		button.setAttribute('style', 'background: black; color: white; border: none');
 	}
 	mxEvent.addListener(button, 'click', function(evt) {
 		editor.execute(action);
