@@ -97,7 +97,7 @@ function addSidebarIcon(graph, sidebar, prototype, image, hint) {
 				
 				graph.setSelectionCell(v1);
 			}
-		};
+		}
 
 	};
 	
@@ -174,13 +174,13 @@ function configureStylesheet(graph) {
 // Function to create the entries in the popupmenu
 function createPopupMenu(editor, graph, menu, cell, evt) {
 	if (cell !== null) {
-		if (graph.isHtmlLabel(cell)) {
+		// if (graph.isHtmlLabel(cell)) {
 			menu.addItem('Properties', 'list-ul', function() {
 				editor.execute('properties', cell);
 			});
 	
 			menu.addSeparator();
-		}
+		// }
 
 		menu.addItem('Delete', 'times', function() {
 			editor.execute('delete', cell);

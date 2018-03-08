@@ -53,10 +53,10 @@ function createSchema(graph) {
 		} else {
 			schema.push('  <structure name="'+child.source.parent.value.name+'_' 
 				+child.target.parent.value.name+'" type="foreignKey" ');
-			schema.push('alteredTable="'+child.source.parent.value.name+'" ');
+			schema.push('table="'+child.source.parent.value.name+'" ');
 			schema.push('constraintName="'+child.source.parent.value.name+'_' 
 				+ child.target.parent.value.name+'" ');
-			schema.push('foreignKeyColumns="'+child.source.value.name+'" '+
+			schema.push('columns="'+child.source.value.name+'" '+
 				'referencedTable="'+child.target.parent.value.name+'" '+
 				'referencedColumns="'+child.target.value.name+'">\n');
 			schema.push('  </structure>\n');
@@ -67,7 +67,7 @@ function createSchema(graph) {
 	var enc = new mxCodec(mxUtils.createXmlDocument());
 	var node = enc.encode(graph.getModel());
 	var model = mxUtils.getXml(node);
-	schema.push(model);
+	schema.push(' '+model);
 	schema.push('\n</schema>');
 	
 	return schema.join('');

@@ -336,24 +336,38 @@ function main(container, outline, toolbar, sidebar, status) {
 			saveContents(schema);
 		});
 		
-		// addToolbarButton(editor, toolbar, 'properties', 'Properties', 'list-ul', true);
+		addToolbarButton(editor, toolbar, 'properties', 'Properties', 'list-ul', true);
 
 		// Defines a new export action
 		editor.addAction('properties', function(editor, cell) {
-			if (cell === null) {
+
+			if (!cell) {
 				cell = graph.getSelectionCell();
 			}
 			
 			if (graph.isHtmlLabel(cell)) {
 				if (cell) {
+					// assume column
 					if (cell.value.isSQL) {
-						showViewProperties(graph, cell);
+						// assume View's (the only) column
+						showQueryProperties(graph, cell);
 					} else {
+						// assume Table's column
 						showProperties(graph, cell);
 					}
 				} else {
 					showAlert('Error', 'Select a column');
 				}
+			} else {
+				// assume Table, View or Connector
+				if (cell.value) {
+					// assume Table or View
+					showStructureProperties(graph, cell);
+				} else {
+					// assume connector
+					showConnectorProperties(graph, cell);
+				}
+				
 			}
 		});
 

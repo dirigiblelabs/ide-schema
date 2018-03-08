@@ -28,11 +28,10 @@ function showModalWindow(title, content, width, height) {
 	wnd.setVisible(true);
 	
 	return wnd;
-};
+}
 
 function showProperties(graph, cell) {
-	// Creates a form for the user object inside
-	// the cell
+	// Creates a form for the user object inside the cell
 	var form = new mxForm('properties');
 
 	// Adds a field for the columnname
@@ -97,23 +96,22 @@ function showProperties(graph, cell) {
 		graph.model.setValue(cell, clone);
 	
 		wnd.destroy();
-	}
+	};
 	
 	// Defines the function to be executed when the
 	// Cancel button is pressed in the dialog
 	var cancelFunction = function() {
 		wnd.destroy();
-	}
+	};
 	form.addButtons(okFunction, cancelFunction);
 
 	var parent = graph.model.getParent(cell);
 	var name = parent.value.name+'.'+cell.value.name;
 	wnd = showModalWindow(name, form.table, 240, 310);
-};
+}
 
-function showViewProperties(graph, cell) {
-	// Creates a form for the user object inside
-	// the cell
+function showQueryProperties(graph, cell) {
+	// Creates a form for the user object inside the cell
 	var form = new mxForm('properties');
 
 	// Adds a field for the columnname
@@ -131,19 +129,84 @@ function showViewProperties(graph, cell) {
 		graph.model.setValue(cell, clone);
 	
 		wnd.destroy();
-	}
+	};
 	
 	// Defines the function to be executed when the
 	// Cancel button is pressed in the dialog
 	var cancelFunction = function() {
 		wnd.destroy();
-	}
+	};
 	form.addButtons(okFunction, cancelFunction);
 
 	var parent = graph.model.getParent(cell);
 	var name = parent.value.name+'.'+cell.value.name;
 	wnd = showModalWindow(name, form.table, 240, 110);
-};
+}
+
+function showStructureProperties(graph, cell) {
+	// Creates a form for the user object inside the cell
+	var form = new mxForm('properties');
+
+	// Adds a field for the table or view name
+	var name = cell.value.name;
+	var nameField = form.addText('Name', name);
+
+	var wnd = null;
+
+	// Defines the function to be executed when the
+	// OK button is pressed in the dialog
+	var okFunction = function() {
+		var clone = cell.value.clone();
+		
+		clone.name = nameField.value;
+		
+		graph.model.setValue(cell, clone);
+	
+		wnd.destroy();
+	};
+	
+	// Defines the function to be executed when the
+	// Cancel button is pressed in the dialog
+	var cancelFunction = function() {
+		wnd.destroy();
+	};
+	form.addButtons(okFunction, cancelFunction);
+
+	wnd = showModalWindow(name, form.table, 240, 110);
+}
+
+function showConnectorProperties(graph, cell) {
+	// Creates a form for the user object inside the cell
+	var form = new mxForm('properties');
+
+	// Adds a field for the columnname
+	var name = cell.source.value.name+':'+cell.target.value.name;
+	var nameField = form.addText('Name', name);
+	nameField.readOnly = true;
+
+	var wnd = null;
+
+	// Defines the function to be executed when the
+	// OK button is pressed in the dialog
+	var okFunction = function() {
+		var clone = cell.value.clone();
+		
+		clone.name = nameField.value;
+		
+		graph.model.setValue(cell, clone);
+	
+		wnd.destroy();
+	};
+	
+	// Defines the function to be executed when the
+	// Cancel button is pressed in the dialog
+	var cancelFunction = function() {
+		wnd.destroy();
+	};
+	form.addButtons(okFunction, cancelFunction);
+
+	wnd = showModalWindow(name, form.table, 240, 110);
+}
 
 function showAlert(title, message) {
 	var width = 410;
