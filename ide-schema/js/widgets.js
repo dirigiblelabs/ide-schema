@@ -103,7 +103,8 @@ function addSidebarIcon(graph, sidebar, prototype, image, hint) {
 	
 	var img = document.createElement('i');
 	img.setAttribute('class', 'fa fa-'+image+' fa-2x');
-	img.color = '#999999';
+	img.setAttribute('style', 'color: #006292');
+//	img.color = '#337ab7';
 	img.title = hint;
 	sidebar.appendChild(img);
 	  					
@@ -149,11 +150,11 @@ function configureStylesheet(graph) {
 	style[mxConstants.STYLE_PERIMETER] = mxPerimeter.RectanglePerimeter;
 	style[mxConstants.STYLE_ALIGN] = mxConstants.ALIGN_CENTER;
 	style[mxConstants.STYLE_VERTICAL_ALIGN] = mxConstants.ALIGN_TOP;
-	style[mxConstants.STYLE_GRADIENTCOLOR] = '#cccccc';
-	style[mxConstants.STYLE_FILLCOLOR] = '#cccccc';
+	style[mxConstants.STYLE_GRADIENTCOLOR] = '#337ab7';
+	style[mxConstants.STYLE_FILLCOLOR] = '#337ab7';
 	style[mxConstants.STYLE_SWIMLANE_FILLCOLOR] = '#ffffff';
-	style[mxConstants.STYLE_STROKECOLOR] = '#999999';
-	style[mxConstants.STYLE_FONTCOLOR] = '#000000';
+	style[mxConstants.STYLE_STROKECOLOR] = '#006292';
+	style[mxConstants.STYLE_FONTCOLOR] = '#fff';
 	style[mxConstants.STYLE_STROKEWIDTH] = '2';
 	style[mxConstants.STYLE_STARTSIZE] = '28';
 	style[mxConstants.STYLE_VERTICAL_ALIGN] = 'middle';
@@ -166,6 +167,7 @@ function configureStylesheet(graph) {
 
 	style = graph.stylesheet.getDefaultEdgeStyle();
 	style[mxConstants.STYLE_LABEL_BACKGROUNDCOLOR] = '#FFFFFF';
+	style[mxConstants.STYLE_STROKECOLOR] = '#337ab7';
 	style[mxConstants.STYLE_STROKEWIDTH] = '2';
 	style[mxConstants.STYLE_ROUNDED] = true;
 	style[mxConstants.STYLE_EDGE] = mxEdgeStyle.EntityRelation;
