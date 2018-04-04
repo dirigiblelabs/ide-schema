@@ -153,7 +153,7 @@ function configureStylesheet(graph) {
 	style[mxConstants.STYLE_GRADIENTCOLOR] = '#111';//'#337ab7';
 	style[mxConstants.STYLE_FILLCOLOR] = '#111';//'#337ab7';
 	style[mxConstants.STYLE_SWIMLANE_FILLCOLOR] = '#ffffff';
-	style[mxConstants.STYLE_STROKECOLOR] = '#000';//'#006292';
+	style[mxConstants.STYLE_STROKECOLOR] = '#999';//'#006292';
 	style[mxConstants.STYLE_FONTCOLOR] = '#fff';
 	style[mxConstants.STYLE_STROKEWIDTH] = '2';
 	style[mxConstants.STYLE_STARTSIZE] = '28';
@@ -167,7 +167,7 @@ function configureStylesheet(graph) {
 
 	style = graph.stylesheet.getDefaultEdgeStyle();
 	style[mxConstants.STYLE_LABEL_BACKGROUNDCOLOR] = '#FFFFFF';
-	style[mxConstants.STYLE_STROKECOLOR] = '#111';//'#337ab7';
+	style[mxConstants.STYLE_STROKECOLOR] = '#999';//'#337ab7';
 	style[mxConstants.STYLE_STROKEWIDTH] = '2';
 	style[mxConstants.STYLE_ROUNDED] = true;
 	style[mxConstants.STYLE_EDGE] = mxEdgeStyle.EntityRelation;
