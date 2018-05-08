@@ -21,7 +21,7 @@ function createSchema(graph) {
 						schema.push('    <query value="'+column.name+'"/>\n');
 					} else {
 						schema.push('    <column name="'+column.name+'" type="'+column.type+'"');
-						if (column.columnLength !== null) {
+						if (column.length !== null) {
 							schema.push(' length="'+column.columnLength+'"');
 						}
 						if (column.notNull === 'true') {
@@ -98,7 +98,7 @@ function createSchemaJson(graph) {
 					} else {
 						column.name = childColumn.name;
 						column.type = childColumn.type;
-						column.length = childColumn.columnLength;
+						column.columnLength = childColumn.columnLength;
 						column.nullable = childColumn.notNull  === 'true' ? !childColumn.notNull : true;
 						column.primaryKey = childColumn.primaryKey  === 'true' ? childColumn.primaryKey : false;
 						column.identity = childColumn.autoIncrement  === 'true' ? childColumn.autoIncrement : false;
