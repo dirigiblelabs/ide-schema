@@ -8,15 +8,14 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
-exports.getEditor = function() {
-	var editor = {
-			"id":"dsm",
-			"name":"DSM",
-			"factory":"frame",
-			"region":"center-top",
-			"label":"Database Schema Modeler",
-			"link":"../ide-schema/modeler.html",
-			"contentTypes":["application/database-schema-model+xml"]
+exports.getEditor = function () {
+	return {
+		"id": "dsm",
+		"name": "DSM",
+		"factory": "frame",
+		"region": "center-top",
+		"label": "Database Schema Modeler",
+		"link": "../ide-schema/modeler.html",
+		"contentTypes": ["application/database-schema-model+xml"]
 	};
-	return editor;
 }
