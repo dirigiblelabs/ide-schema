@@ -80,7 +80,7 @@ function addSidebarIcon(graph, sidebar, prototype, image, hint, $scope) {
 					tableCount++;
 				}
 			}
-			let prefix = prototype.value.name === "TABLENAME" ? "TABLE" : "VIEW";
+			var prefix = prototype.value.name === "TABLENAME" ? "TABLE" : "VIEW";
 			//showPrompt('Enter name for new table', prefix+(tableCount+1), createNode);
 			createNode(prefix + (tableCount + 1));
 		}
