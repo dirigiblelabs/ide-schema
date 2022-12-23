@@ -53,6 +53,10 @@ angular.module('ui.schema.modeler', ["ideUI", "ideView"])
 			}
 		};
 
+		$scope.showAlert = function (title, message) {
+			messageHub.showAlertError(title, message);
+		};
+
 		function getResource() {
 			let xhr = new XMLHttpRequest();
 			xhr.open('GET', '/services/v4/ide/workspaces' + $scope.dataParameters.file, false);
