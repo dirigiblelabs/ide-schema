@@ -9,7 +9,7 @@
  *   SAP - initial API and implementation
  */
 angular.module('ui.schema.modeler', ["ideUI", "ideView"])
-	.controller('ModelerCtrl', function ($scope, messageHub, ViewParameters) {
+	.controller('ModelerCtrl', function ($scope, messageHub, $window, ViewParameters) {
 		let contents;
 		let csrfToken;
 		$scope.errorMessage = 'Аn unknown error was encountered. Please see console for more information.';
@@ -38,6 +38,11 @@ angular.module('ui.schema.modeler', ["ideUI", "ideView"])
 			{ value: "DECIMAL", label: "DECIMAL" },
 			{ value: "BIT", label: "BIT" },
 		];
+
+		angular.element($window).bind("focus", function () {
+			messageHub.setFocusedEditor($scope.dataParameters.file);
+			messageHub.setStatusCaret('');
+		});
 
 		$scope.checkSchema = function () {
 			let xhr = new XMLHttpRequest();
@@ -157,6 +162,10 @@ angular.module('ui.schema.modeler', ["ideUI", "ideView"])
 			} else if (typeof value === "boolean") return value;
 			return false;
 		};
+
+		messageHub.onEditorFocusGain(function (msg) {
+			if (msg.resourcePath === $scope.dataParameters.file) messageHub.setStatusCaret('');
+		});
 
 		messageHub.onDidReceiveMessage(
 			"editor.file.save.all",
